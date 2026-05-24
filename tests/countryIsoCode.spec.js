@@ -1,61 +1,14 @@
 import { describe, it, before } from 'node:test'
 import assert from 'node:assert/strict'
-import { SoapClient } from '../helpers/SoapClient.js'
-
-const wsdlUrl =
-    'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL'
-
-const SERVICES = Object.freeze({
-    ListOfContinentsByName: 'ListOfContinentsByName',
-    ListOfContinentsByNameAsync: 'ListOfContinentsByNameAsync',
-    ListOfContinentsByCode: 'ListOfContinentsByCode',
-    ListOfContinentsByCodeAsync: 'ListOfContinentsByCodeAsync',
-    ListOfCurrenciesByName: 'ListOfCurrenciesByName',
-    ListOfCurrenciesByNameAsync: 'ListOfCurrenciesByNameAsync',
-    ListOfCurrenciesByCode: 'ListOfCurrenciesByCode',
-    ListOfCurrenciesByCodeAsync: 'ListOfCurrenciesByCodeAsync',
-    CurrencyName: 'CurrencyName',
-    CurrencyNameAsync: 'CurrencyNameAsync',
-    ListOfCountryNamesByCode: 'ListOfCountryNamesByCode',
-    ListOfCountryNamesByCodeAsync: 'ListOfCountryNamesByCodeAsync',
-    ListOfCountryNamesByName: 'ListOfCountryNamesByName',
-    ListOfCountryNamesByNameAsync: 'ListOfCountryNamesByNameAsync',
-    ListOfCountryNamesGroupedByContinent: 'ListOfCountryNamesGroupedByContinent',
-    ListOfCountryNamesGroupedByContinentAsync: 'ListOfCountryNamesGroupedByContinentAsync',
-    CountryName: 'CountryName',
-    CountryNameAsync: 'CountryNameAsync',
-    CountryISOCode: 'CountryISOCode',
-    CountryISOCodeAsync: 'CountryISOCodeAsync',
-    CapitalCity: 'CapitalCity',
-    CapitalCityAsync: 'CapitalCityAsync',
-    CountryCurrency: 'CountryCurrency',
-    CountryCurrencyAsync: 'CountryCurrencyAsync',
-    CountryFlag: 'CountryFlag',
-    CountryFlagAsync: 'CountryFlagAsync',
-    CountryIntPhoneCode: 'CountryIntPhoneCode',
-    CountryIntPhoneCodeAsync: 'CountryIntPhoneCodeAsync',
-    FullCountryInfo: 'FullCountryInfo',
-    FullCountryInfoAsync: 'FullCountryInfoAsync',
-    FullCountryInfoAllCountries: 'FullCountryInfoAllCountries',
-    FullCountryInfoAllCountriesAsync: 'FullCountryInfoAllCountriesAsync',
-    CountriesUsingCurrency: 'CountriesUsingCurrency',
-    CountriesUsingCurrencyAsync: 'CountriesUsingCurrencyAsync',
-    ListOfLanguagesByName: 'ListOfLanguagesByName',
-    ListOfLanguagesByNameAsync: 'ListOfLanguagesByNameAsync',
-    ListOfLanguagesByCode: 'ListOfLanguagesByCode',
-    ListOfLanguagesByCodeAsync: 'ListOfLanguagesByCodeAsync',
-    LanguageName: 'LanguageName',
-    LanguageNameAsync: 'LanguageNameAsync',
-    LanguageISOCode: 'LanguageISOCode',
-    LanguageISOCodeAsync: 'LanguageISOCodeAsync',
-})
+import { SoapClient } from '../helpers/soapClient.js'
+import { SERVICES, WSDL_URL } from '../helpers/constants.js';
 
 let client
 
 describe('Get country ISO code by country name', () => {
     before(() => {
         const clientOptions = {}
-        client = new SoapClient(wsdlUrl,clientOptions)
+        client = new SoapClient(WSDL_URL,clientOptions)
         client.connect()
     })
 
